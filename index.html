@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}img{max-width:100%}</style>
+<title>Ang Song</title>
+<meta name="description" content="Ang Song — MPH student in epidemiology at the University of Michigan, working on DNA methylation, socioeconomic conditions, aging and dementia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow reading column; dates sit in a left gutter on wide screens and stack above on phones. */
+:root {
+  --bg: #fbfcfc;
+  --fg: #1b2427;
+  --muted: #5c6b70;
+  --rule: #dfe5e6;
+  --accent: #1f6f78;
+  --accent-soft: #e3f0f1;
+  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-body: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12181a; --fg: #e3e9ea; --muted: #93a3a7; --rule: #263033;
+    --accent: #6cc0c8; --accent-soft: #1b2c2f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12181a; --fg: #e3e9ea; --muted: #93a3a7; --rule: #263033;
+  --accent: #6cc0c8; --accent-soft: #1b2c2f; color-scheme: dark;
+}
+
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+}
+.wrap {
+  max-width: 780px; margin: 0 auto;
+  padding-block: 64px 80px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 56px;
+}
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+/* Header */
+header { display: flex; align-items: center; gap: 32px; }
+.intro { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.photo {
+  width: 160px; height: 160px; max-width: 100%; flex: none;
+  border-radius: 50%; object-fit: cover;
+  border: 1px solid var(--rule); background: var(--accent-soft);
+}
+.seq {
+  font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.18em;
+  color: var(--muted); user-select: none;
+}
+.seq b { color: var(--accent); font-weight: 500; }
+h1 {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: clamp(2.2rem, 6vw, 3rem); line-height: 1.1; margin: 0;
+  text-wrap: balance;
+}
+h1 .zh { font-weight: 400; color: var(--muted); font-size: 0.55em; margin-left: 0.4em; letter-spacing: 0.05em; }
+.role { margin: 0; color: var(--muted); font-size: 1.05rem; }
+.links { display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 0.95rem; align-items: center; }
+.email { display: inline-flex; gap: 8px; align-items: center; font-family: var(--font-mono); font-size: 0.9rem; }
+.copy {
+  font: 500 12px var(--font-body); color: var(--accent); background: var(--accent-soft);
+  border: 0; border-radius: 4px; padding: 3px 8px; cursor: pointer;
+}
+
+/* Sections */
+section { display: flex; flex-direction: column; gap: 20px; }
+h2 {
+  font: 500 12px var(--font-body); text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--muted); margin: 0; padding-bottom: 10px; border-bottom: 1px solid var(--rule);
+}
+p { margin: 0; max-width: 65ch; }
+.about { display: flex; flex-direction: column; gap: 14px; }
+.interests { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 4px 0 0; }
+.interests li {
+  font-size: 0.85rem; padding: 3px 10px; border-radius: 999px;
+  background: var(--accent-soft); color: var(--fg);
+}
+
+/* Entry rows: date gutter + content */
+.entries { display: flex; flex-direction: column; gap: 30px; }
+.entries.tight { gap: 20px; }
+.entry { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 4px 24px; }
+.when {
+  font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted);
+  padding-top: 4px; font-variant-numeric: tabular-nums;
+}
+.body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+h3 {
+  font-family: var(--font-display); font-weight: 600; font-size: 1.15rem;
+  line-height: 1.35; margin: 0; text-wrap: balance;
+}
+.tight h3 { font-size: 1.05rem; }
+.meta { font-size: 0.9rem; color: var(--muted); }
+.status {
+  display: inline-block; font: 500 11px var(--font-mono); letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 1px 7px; border-radius: 3px;
+  border: 1px solid var(--rule); color: var(--muted); margin-left: 6px; vertical-align: 2px;
+}
+.status.live { color: var(--accent); border-color: var(--accent); }
+.desc { font-size: 0.97rem; }
+.mine { font-size: 0.9rem; color: var(--muted); }
+.mine strong { color: var(--fg); font-weight: 500; }
+
+/* Publications */
+.pubs { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 18px; }
+.pubs li { font-size: 0.95rem; max-width: 70ch; }
+.kind { font: 500 11px var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 2px; }
+.pubs .me { font-weight: 600; }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px 24px; margin: 0; }
+.skills dt { font: 500 0.78rem var(--font-mono); color: var(--muted); padding-top: 2px; }
+.skills dd { margin: 0; font-size: 0.95rem; min-width: 0; }
+
+footer { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 16px; }
+
+@media (max-width: 560px) {
+  .wrap { padding-block: 40px 56px; gap: 44px; }
+  header { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .photo { width: 120px; height: 120px; }
+  .entry, .skills { grid-template-columns: minmax(0, 1fr); }
+  .when { padding-top: 0; }
+  .skills dd { margin-bottom: 6px; }
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img class="photo" src="photo.jpg" alt="Portrait of Ang Song" width="160" height="160">
+    <div class="intro">
+      <div class="seq" aria-hidden="true">A T <b>C G</b> T A <b>C G</b> G A T <b>C G</b> C A</div>
+      <h1>Ang Song<span class="zh" lang="zh">宋昂</span></h1>
+      <p class="role">MPH student in General Epidemiology, University of Michigan · Research Assistant, Jennifer Smith Lab</p>
+      <div class="links">
+        <span class="email"><span id="addr">angsong@umich.edu</span><button class="copy" id="copyBtn" type="button">Copy</button></span>
+      </div>
+    </div>
+  </header>
+
+  <section aria-labelledby="about-h">
+    <h2 id="about-h">About</h2>
+    <div class="about">
+      <p>My research interests are in genetic and molecular epidemiology, with a focus on DNA methylation, socioeconomic conditions, and their relationships with aging and dementia. My current projects use blood DNA methylation from two aging cohorts, the Health and Retirement Study (HRS) and the Harmonized Diagnostic Assessment of Dementia for the Longitudinal Aging Study in India (LASI-DAD).</p>
+      <p>Before coming to Michigan, I trained in basic medical sciences at Capital Medical University in Beijing, where I developed SNP genotyping panels for genetic monitoring of laboratory animals. That work gave me a grounding in population genetics and hands-on genotyping that I now bring to population health research.</p>
+      <ul class="interests" aria-label="Research interests">
+        <li>Genetic &amp; molecular epidemiology</li>
+        <li>DNA methylation</li>
+        <li>Socioeconomic conditions</li>
+        <li>Aging &amp; dementia</li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="research-h">
+    <h2 id="research-h">Research experience</h2>
+    <div class="entries">
+
+      <article class="entry">
+        <div class="when">Feb 2026 – Present</div>
+        <div class="body">
+          <h3>DNA methylation–based SES scores and neurodegenerative biomarkers in LASI-DAD <span class="status live">Ongoing</span></h3>
+          <div class="meta">University of Michigan, Jennifer Smith Lab · Research Assistant · Advisor: Prof. Jennifer Smith</div>
+          <p class="desc">Applies an existing HRS-trained elastic-net model of socioeconomic status (SES) to DNA methylation data from LASI-DAD participants, and examines how the resulting SES scores relate to plasma neurodegenerative biomarkers, including Aβ42 and neurofilament light chain (NfL). A companion epigenome-wide association study (EWAS) examines blood DNA methylation and neurodegenerative biomarkers.</p>
+          <p class="mine"><strong>My role:</strong> linked methylation, biomarker and demographic data; used mixed-effects models in R (lme4) to residualize CpG methylation for batch, plate and row effects and calculated SES scores; ran the association analyses; reran an existing EWAS pipeline, reviewed the literature, drafted the manuscript introduction, and organized most of the study tables and figures.</p>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="when">Jun 2026 – Present</div>
+        <div class="body">
+          <h3>Serum biomarkers and epigenetic proxies of socioeconomic disparities in HRS <span class="status live">Ongoing</span></h3>
+          <div class="meta">University of Michigan, Jennifer Smith Lab · Collaborator: Assoc. Prof. Lauren L. Schmitz, University of Wisconsin–Madison</div>
+          <p class="desc">Examines an adult SES index, combining education, income, wealth, occupational prestige and neighborhood conditions across 1992–2016, in relation to epigenetic biomarker proxies and their matched serum or clinical measures in the Health and Retirement Study.</p>
+          <p class="mine"><strong>My role:</strong> organized proxy–serum correlation and regression results; prepared tables and formatted figures for the manuscript.</p>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="when">Jul 2024 – Present</div>
+        <div class="body">
+          <h3>SNP panels for genetic monitoring in rhesus and cynomolgus macaques <span class="status live">Ongoing</span></h3>
+          <div class="meta">Capital Medical University, Zhenwen Chen Lab · Undergraduate Thesis and Follow-up Research · Advisor: Prof. Zhenwen Chen</div>
+          <p class="desc">Developed an approximately 200-SNP panel and a 50K-SNP panel from whole-genome sequencing data for genetic monitoring, kinship and population-genetic analysis in laboratory macaques. Thesis completed July 2025; manuscript and patent preparation ongoing.</p>
+          <p class="mine"><strong>My role:</strong> extracted DNA and processed whole-genome sequencing data; screened and selected SNPs in R and Excel; evaluated multiplex-PCR primer performance and replaced low-performing loci; calculated a genomic relationship matrix with rrBLUP and assessed genetic diversity and species differentiation.</p>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="when">Dec 2021 – May 2024</div>
+        <div class="body">
+          <h3>SNP genotyping panels for miniature pigs and Chinese hamsters <span class="status">Published</span></h3>
+          <div class="meta">Capital Medical University, Zhenwen Chen Lab · Undergraduate Research Intern · Advisor: Prof. Zhenwen Chen</div>
+          <p class="desc">Developed SNP genotyping panels and used them to measure genetic diversity and population structure in 117 pigs from four closed colonies and 73 hamsters from two populations. PCA separated the four pig colonies, consistent with a Nei-distance UPGMA tree, while the two hamster populations overlapped. This work led to a co-authored publication and a granted patent.</p>
+          <p class="mine"><strong>My role:</strong> designed approximately 100 primers using NCBI reference genomes; carried out most of the laboratory and pilot experiments, sample processing and assay development; contributed PCA analyses and data curation to the Chinese-hamster study; drafted parts of the miniature-pig patent application and organized its results.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section aria-labelledby="pubs-h">
+    <h2 id="pubs-h">Publications &amp; patents</h2>
+    <ul class="pubs">
+      <li>
+        <span class="kind">Journal article</span>
+        Sun, M., Guo, Y., Ren, Z., <span class="me">Song, A.</span>, Lu, J., Li, C., Lv, J., Guo, M., Liu, X., Du, X., Chen, Z., Song, G., He, Y., Chen, Z., &amp; Huo, X. (2025). Development of a single-nucleotide polymorphism panel genotyping system for genetic analysis of Chinese hamsters. <em>Animal Models and Experimental Medicine, 8</em>(5), 916–921. <a href="https://doi.org/10.1002/ame2.70006">https://doi.org/10.1002/ame2.70006</a>
+      </li>
+      <li>
+        <span class="kind">Patent</span>
+        Huo, X., Fang, W., Chen, Z., Du, X., Pei, X., Sun, M., Guo, Y., <span class="me">Song, A.</span>, &amp; Zhang, D. A Combination of SNP Molecular Markers for Miniature Pigs and Its Applications. Chinese invention patent CN 119464504 B, granted Mar 17, 2026. Application No. 202411503827.4, filed Oct 25, 2024.
+      </li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="other-h">
+    <h2 id="other-h">Additional research and course projects</h2>
+    <div class="entries tight">
+      <article class="entry">
+        <div class="when">Mar 2021 – Dec 2021</div>
+        <div class="body">
+          <h3>Itaconic acid and macrophage phagocytosis after intracerebral hemorrhage</h3>
+          <div class="meta">Capital Medical University · Advisor: Prof. Qian Li</div>
+          <p class="mine">Cultured macrophages, performed hemin-treatment and bead experiments, and assessed phagocytosis using immunofluorescence and confocal microscopy; examined downstream signaling using RT-qPCR, Western blot and fluorescence measurements; prepared figures in GraphPad Prism and wrote the project report.</p>
+        </div>
+      </article>
+      <article class="entry">
+        <div class="when">Nov 2022 – Dec 2022</div>
+        <div class="body">
+          <h3>Blood glucose in prediabetes</h3>
+          <div class="meta">Course project</div>
+          <p class="mine">Analyzed China Health and Retirement Longitudinal Study (CHARLS) data from 1,000 participants using SPSS and prepared a statistical report on factors associated with blood glucose.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="exp-h">
+    <h2 id="exp-h">Clinical and public health experience</h2>
+    <div class="entries tight">
+      <article class="entry">
+        <div class="when">Jun 2024 – Sep 2024</div>
+        <div class="body">
+          <h3>SHINVA</h3>
+          <div class="meta">Clinical Market Specialist Assistant Intern</div>
+          <p class="mine">Assisted with statistical analysis of participant results for a hemodialysis-filter clinical trial and participated in discussions of trial-protocol feasibility.</p>
+        </div>
+      </article>
+      <article class="entry">
+        <div class="when">Feb 2023 – Feb 2024</div>
+        <div class="body">
+          <h3>Beijing Shijitan Hospital, Capital Medical University</h3>
+          <div class="meta">Clinical Intern</div>
+          <p class="mine">Participated in ward activities, medical-record documentation, clinical examinations and outpatient care.</p>
+        </div>
+      </article>
+      <article class="entry">
+        <div class="when">Feb 2022 – Mar 2022</div>
+        <div class="body">
+          <h3>Fengtai District CDC, Beijing</h3>
+          <div class="meta">Participant in a COVID-19 Epidemiologic Survey · Social Practice</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="edu-h">
+    <h2 id="edu-h">Education</h2>
+    <div class="entries tight">
+      <article class="entry">
+        <div class="when">Aug 2025 – May 2027 (expected)</div>
+        <div class="body">
+          <h3>University of Michigan, Ann Arbor</h3>
+          <div class="meta">Master of Public Health in General Epidemiology</div>
+          <p class="mine">Relevant coursework: Applied Biostatistics; R for Epidemiology Research; Analyzing Clustered and Longitudinal Data Using Statistical Software; Biostatistical Analysis for Health-related Studies. In progress: Genetics in Public Health; Cancer Epidemiology.</p>
+        </div>
+      </article>
+      <article class="entry">
+        <div class="when">Aug 2020 – May 2025</div>
+        <div class="body">
+          <h3>Capital Medical University</h3>
+          <div class="meta">Bachelor of Medicine in Basic Medical Sciences</div>
+          <p class="mine">Academic Progress Scholarship, 2023–2024 academic year</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="skills-h">
+    <h2 id="skills-h">Skills</h2>
+    <dl class="skills">
+      <dt>Statistical &amp; computational</dt>
+      <dd>R (dplyr, lme4, lmerTest, gtsummary, rrBLUP, ggplot2), Stata, SPSS, Popgene32, GraphPad Prism; regression, mixed-effects models, DNA methylation analysis, EWAS pipelines, and population genetics</dd>
+      <dt>Laboratory</dt>
+      <dd>DNA extraction, PCR, RT-qPCR, Western blot, cell culture, immunofluorescence staining, confocal microscopy, and fluorescence intensity measurement</dd>
+      <dt>Additional software</dt>
+      <dd>SnapGene, Microsoft Excel</dd>
+    </dl>
+  </section>
+
+  <footer>Ann Arbor, Michigan · Updated October 2026</footer>
+</div>
+
+<script>
+document.getElementById('copyBtn').addEventListener('click', function () {
+  var btn = this, text = document.getElementById('addr').textContent;
+  function done() { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1600); }
+  function fallback() {
+    var r = document.createRange(); r.selectNodeContents(document.getElementById('addr'));
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    btn.textContent = 'Selected';
+  }
+  try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+});
+</script>
+
+</body>
+</html>
